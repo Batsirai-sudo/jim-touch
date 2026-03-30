@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { Logo } from "./Logo";
 
 const NAV_LINKS = [
   { label: "Home",     href: "#home",     active: true },
@@ -26,8 +27,7 @@ export default function Navbar() {
 
         {/* ── Logo (left) ── */}
         <a href="#home" className="jt-nav__logo">
-          <span className="logo-jim">JIM</span>
-          <span className="logo-touch">TOUCH</span>
+          <Logo size={38} wordmark={true} />
         </a>
 
         {/* ── Pill nav (center) ── */}
