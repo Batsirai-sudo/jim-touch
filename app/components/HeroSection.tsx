@@ -42,9 +42,6 @@ export default function HeroSection() {
       <div className="jt-hero__grid" />
       <div className="jt-hero__grain" />
 
-      {/* ── Full-width watermark ── */}
-      <div className="jt-hero__wm" aria-hidden>JIM TOUCH</div>
-
       {/* ── Animated spotlight orb ── */}
       <div className="jt-hero__spotlight" />
 
@@ -72,36 +69,42 @@ export default function HeroSection() {
       {/* ── Scanline ── */}
       <div className="jt-hero__scanline" />
 
-      {/* ── Main content ── */}
-      <div className="jt-hero__content">
+      {/* ══════════════════════════════════════════════════
+          Layout wrapper: banner top ↔ content bottom
+      ══════════════════════════════════════════════════ */}
+      <div className="jt-hero__layout">
+
+        {/* PARKVIEW-STYLE: "JIM TOUCH" spans the full width */}
+        <div className="jt-hero__banner">
+          <span className="jt-banner__jim">JIM</span>
+          <span className="jt-banner__touch"> TOUCH</span>
+        </div>
+
+        {/* Spacer pushes content to bottom */}
+        <div style={{ flex: 1 }} />
+
+        {/* ── Bottom content: badge + tagline + CTAs + stats ── */}
+        <div className="jt-hero__bottom">
 
         {/* Badge */}
-        <div className="jt-hero__badge" style={{ animationDelay: "0.35s" }}>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <div className="jt-hero__badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
           </svg>
           CERTIFIED CONSTRUCTION SPECIALISTS
         </div>
 
-        {/* ── Headline — Parkview-style: small / HUGE / small ── */}
-        <h1 className="jt-hero__heading">
-          <span className="jt-line jt-line--sm jt-line--1">BUILDING YOUR</span>
-          <span className="jt-line jt-line--xl jt-line--2">
-            <span className="jt-accent">VISION</span>
-          </span>
-          <span className="jt-line jt-line--sm jt-line--3">INTO REALITY</span>
+        {/* Tagline — "TURNING YOUR / VISION INTO REALITY" */}
+        <h1 className="jt-hero__tagline-big">
+          TURNING YOUR<br />
+          VISION INTO REALITY
         </h1>
-
-        {/* Tagline */}
-        <p className="jt-hero__tagline">
-          Construction &nbsp;·&nbsp; Civil Engineering &nbsp;·&nbsp; Project Management
-        </p>
 
         {/* Description */}
         <p className="jt-hero__desc">
-          From residential foundations to large-scale commercial and
-          infrastructure developments across Zimbabwe — Jim Touch delivers
-          precision, quality, and commitment on every project.
+          Expert construction, civil engineering, and project management
+          for residential, commercial, and infrastructure developments
+          across Zimbabwe.
         </p>
 
         {/* CTAs */}
@@ -120,7 +123,7 @@ export default function HeroSection() {
             <div
               key={stat.label}
               className="jt-stat"
-              style={{ animationDelay: `${1.5 + i * 0.15}s` }}
+              style={{ animationDelay: `${1.4 + i * 0.15}s` }}
             >
               <span className="jt-stat__value">{stat.value}</span>
               <span className="jt-stat__label">{stat.label}</span>
@@ -128,6 +131,8 @@ export default function HeroSection() {
           ))}
         </div>
       </div>
+
+      </div>{/* end jt-hero__layout */}
 
       {/* ── Scroll indicator ── */}
       <div className="jt-hero__scroll">

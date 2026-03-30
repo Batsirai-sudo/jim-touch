@@ -280,54 +280,72 @@ body {
   background-repeat: no-repeat;
 }
 
-/* ── Gradient colour-grade overlay (separate div, not ::after) ──
-   Heavy dark on the left so text reads cleanly.
-   Transparent on the right so the machine "breaks out".          */
+/* ── Gradient overlay — Parkview style ──
+   Slight dark at top (navbar + banner text readability),
+   heavy dark at bottom (tagline / CTA area),
+   centre stays open so the machine pops.              */
 .jt-hero__overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
   background:
-    /* Left-to-right fade — dark left, open right */
-    linear-gradient(
-      108deg,
-      rgba(6, 5, 4, 0.97) 0%,
-      rgba(6, 5, 4, 0.90) 18%,
-      rgba(6, 5, 4, 0.72) 36%,
-      rgba(6, 5, 4, 0.30) 54%,
-      rgba(6, 5, 4, 0.07) 68%,
-      transparent 80%
-    ),
-    /* Top bar — keeps navbar area dark */
-    linear-gradient(to bottom, rgba(6,5,4,0.85) 0%, transparent 16%),
-    /* Bottom bar — grounds the stats section */
-    linear-gradient(to top, rgba(6,5,4,0.98) 0%, transparent 32%),
-    /* Warm amber crown glow at top-center (Scriptix golden light) */
-    radial-gradient(ellipse 65% 32% at 50% 0%, rgba(190, 125, 8, 0.22) 0%, transparent 72%),
-    /* Welding-spark warm bloom at lower-left */
-    radial-gradient(ellipse 55% 50% at 28% 80%, rgba(225, 85, 0, 0.20) 0%, transparent 65%);
+    /* Top dark band for navbar */
+    linear-gradient(to bottom, rgba(6,5,4,0.72) 0%, rgba(6,5,4,0.18) 18%, transparent 40%),
+    /* Heavy bottom dark for tagline readability */
+    linear-gradient(to top, rgba(6,5,4,0.98) 0%, rgba(6,5,4,0.75) 22%, rgba(6,5,4,0.20) 45%, transparent 62%),
+    /* Left edge shadow so banner text pops over bright machine parts */
+    linear-gradient(to right, rgba(6,5,4,0.35) 0%, transparent 30%),
+    /* Warm amber crown glow */
+    radial-gradient(ellipse 65% 30% at 50% 0%, rgba(190,125,8,0.18) 0%, transparent 72%),
+    /* Welding warm bloom bottom-left */
+    radial-gradient(ellipse 55% 50% at 25% 85%, rgba(225,85,0,0.18) 0%, transparent 65%);
 }
 
-/* ── Watermark — huge low-opacity "JIM TOUCH" across the full width ── */
-.jt-hero__wm {
-  position: absolute;
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
+/* ══════════════════════════════════════════════════════════
+   LAYOUT WRAPPER — flex column fills full viewport height
+   banner stays at top, content pushed to bottom
+══════════════════════════════════════════════════════════ */
+.jt-hero__layout {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  /* top padding clears the fixed navbar */
+  padding: 72px 0 clamp(40px, 6dvh, 80px);
+}
+
+/* ══════════════════════════════════════════════════════════
+   PARKVIEW-STYLE BANNER — "JIM TOUCH" spans the viewport
+══════════════════════════════════════════════════════════ */
+.jt-hero__banner {
+  padding: clamp(8px, 1.5dvh, 24px) 0 0 clamp(20px, 4.5vw, 80px);
   font-family: "Bebas Neue", sans-serif;
-  font-size: clamp(5rem, 17vw, 15.5rem);
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgba(245, 166, 35, 0.055);
-  letter-spacing: 0.20em;
+  /* Scale so "JIM TOUCH" (≈9 chars in Bebas Neue) spans ~90% of viewport */
+  font-size: clamp(3.5rem, 17vw, 22rem);
+  letter-spacing: 0.04em;
+  line-height: 1;
   white-space: nowrap;
   pointer-events: none;
-  z-index: 2;
-  user-select: none;
-  opacity: 0;
-  animation: wmFadeIn 1.4s ease 1.8s forwards;
+  animation: slideInLeft 1s cubic-bezier(0.22,1,0.36,1) 0.3s both;
 }
-@keyframes wmFadeIn {
-  to { opacity: 1; }
+
+/* "JIM" — white */
+.jt-banner__jim {
+  color: var(--white);
+  /* subtly drop-shadow so it reads over the machine */
+  text-shadow: 0 4px 40px rgba(0,0,0,0.55);
+}
+
+/* "TOUCH" — amber gradient */
+.jt-banner__touch {
+  background: linear-gradient(90deg, var(--amber-bright) 0%, var(--amber) 50%, var(--orange) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 55px rgba(245,130,0,0.50));
+  animation: accentPulse 4s ease-in-out 1.5s infinite alternate;
 }
 
 /* ── Decorative grid overlay ── */
@@ -424,15 +442,10 @@ body {
   100% { top: 100%; }
 }
 
-/* ── Hero content ── */
-.jt-hero__content {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  /* Content lives in the left ~55% — machine dominates the right */
-  padding: 128px clamp(24px, 7vw, 120px) 88px;
+/* ── Bottom content area — badge + tagline + CTA + stats ── */
+.jt-hero__bottom {
+  padding-left: clamp(20px, 4.5vw, 80px);
+  max-width: 680px;
 }
 
 /* Badge */
@@ -440,86 +453,41 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 0.70rem;
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.30em;
   color: var(--amber);
   text-transform: uppercase;
-  margin-bottom: 28px;
-  animation: fadeUp 0.8s ease 0.35s both;
+  margin-bottom: 20px;
+  animation: fadeUp 0.8s ease 0.7s both;
 }
 
-/* ── Headline ── */
-.jt-hero__heading {
+/* Parkview-style bottom tagline — bold, white, 2 lines */
+.jt-hero__tagline-big {
   font-family: "Bebas Neue", sans-serif;
-  display: flex;
-  flex-direction: column;
-  line-height: 0.88;
-  margin-bottom: 22px;
-  gap: 0;
-}
-
-/* Base line style */
-.jt-line {
-  display: block;
-  font-family: "Bebas Neue", sans-serif;
-  letter-spacing: 0.03em;
+  font-size: clamp(2rem, 4.2vw, 4.5rem);
   color: var(--white);
-  line-height: 0.9;
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+  margin-bottom: 20px;
+  animation: fadeUp 0.85s cubic-bezier(0.22,1,0.36,1) 0.9s both;
 }
 
-/* Small flanking lines — "BUILDING YOUR" / "INTO REALITY" */
-.jt-line--sm {
-  font-size: clamp(2.2rem, 5.2vw, 5rem);
-}
-
-/* The hero focal word — very large, like Parkview's single banner word */
-.jt-line--xl {
-  font-size: clamp(5.8rem, 16vw, 14.5rem);
-  line-height: 0.82;
-  margin: 2px 0;
-}
-
-/* Animation delays */
-.jt-line--1 { animation: slideInLeft 0.85s cubic-bezier(0.22,1,0.36,1) 0.50s both; }
-.jt-line--2 { animation: slideInLeft 0.85s cubic-bezier(0.22,1,0.36,1) 0.68s both; }
-.jt-line--3 { animation: slideInLeft 0.85s cubic-bezier(0.22,1,0.36,1) 0.86s both; }
-
-/* Orange/amber gradient accent */
-.jt-accent {
-  background: linear-gradient(90deg, var(--amber-bright) 0%, var(--amber) 45%, var(--orange) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 60px rgba(245,130,0,0.55));
-  animation: accentPulse 4s ease-in-out 1.6s infinite alternate;
-}
 @keyframes accentPulse {
   from { filter: drop-shadow(0 0 40px rgba(245,130,0,0.45)); }
   to   { filter: drop-shadow(0 0 90px rgba(245,130,0,0.80)); }
 }
 
-/* Tagline — engineering discipline list */
-.jt-hero__tagline {
-  font-size: 0.70rem;
-  font-weight: 600;
-  letter-spacing: 0.30em;
-  color: rgba(245, 166, 35, 0.72);
-  text-transform: uppercase;
-  margin-bottom: 18px;
-  animation: fadeUp 0.8s ease 1.0s both;
-}
-
 /* Description */
 .jt-hero__desc {
   max-width: 480px;
-  font-size: clamp(0.90rem, 1.5vw, 1.05rem);
+  font-size: clamp(0.88rem, 1.4vw, 1.02rem);
   font-weight: 300;
   letter-spacing: 0.05em;
   line-height: 1.80;
-  color: rgba(240,237,230,0.46);
-  margin-bottom: 42px;
-  animation: fadeUp 0.8s ease 1.10s both;
+  color: rgba(240,237,230,0.44);
+  margin-bottom: 36px;
+  animation: fadeUp 0.8s ease 1.05s both;
 }
 
 /* CTA buttons */

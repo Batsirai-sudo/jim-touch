@@ -96,7 +96,7 @@ export function Logo({ size = 44, wordmark = true, className = "" }: LogoProps) 
 
       {/* ── Wordmark: JIM (amber) + TOUCH (white) on ONE line ── */}
       {wordmark && (
-        <div className="jt-logo__wordmark">
+        <div className="jt-logo__wordmark" style={{ display: "flex", flexDirection: "row", alignItems: "baseline", gap: 0, whiteSpace: "nowrap", lineHeight: 1 }}>
           <span className="jt-logo__jim">JIM</span>
           <span className="jt-logo__touch">TOUCH</span>
         </div>
