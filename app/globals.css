@@ -1,56 +1,115 @@
-/* @import "tailwindcss";
+@import"https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap";
+@import "tailwindcss";
+
+/* ─── AEONIK ──────────────────────────────────────────────── */
+@font-face { font-family: "Aeonik"; src: url('./fonts/aeonik/AeonikTRIAL-Thin.otf') format('opentype');     font-weight: 100; font-style: normal; font-display: swap; }
+@font-face { font-family: "Aeonik"; src: url('./fonts/aeonik/AeonikTRIAL-Air.otf') format('opentype');      font-weight: 200; font-style: normal; font-display: swap; }
+@font-face { font-family: "Aeonik"; src: url('./fonts/aeonik/AeonikTRIAL-Light.otf') format('opentype');    font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "Aeonik"; src: url('./fonts/aeonik/AeonikTRIAL-Regular.otf') format('opentype');  font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Aeonik"; src: url('./fonts/aeonik/AeonikTRIAL-Medium.otf') format('opentype');   font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Aeonik"; src: url('./fonts/aeonik/AeonikTRIAL-SemiBold.otf') format('opentype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Aeonik"; src: url('./fonts/aeonik/AeonikTRIAL-Bold.otf') format('opentype');     font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Aeonik"; src: url('./fonts/aeonik/AeonikTRIAL-Black.otf') format('opentype');    font-weight: 900; font-style: normal; font-display: swap; }
+
+/* ─── HELVETICA NEUE ──────────────────────────────────────── */
+@font-face { font-family: "Helvetica Neue"; src: url('./fonts/helvetica-neue/HelveticaNeueThin.otf') format('opentype');           font-weight: 100; font-style: normal; font-display: swap; }
+@font-face { font-family: "Helvetica Neue"; src: url('./fonts/helvetica-neue/HelveticaNeueUltraLight.otf') format('opentype');     font-weight: 200; font-style: normal; font-display: swap; }
+@font-face { font-family: "Helvetica Neue"; src: url('./fonts/helvetica-neue/HelveticaNeueUltraLightItalic.otf') format('opentype'); font-weight: 200; font-style: italic; font-display: swap; }
+@font-face { font-family: "Helvetica Neue"; src: url('./fonts/helvetica-neue/HelveticaNeueLight.otf') format('opentype');          font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "Helvetica Neue"; src: url('./fonts/helvetica-neue/HelveticaNeueLightItalic.otf') format('opentype');    font-weight: 300; font-style: italic; font-display: swap; }
+@font-face { font-family: "Helvetica Neue"; src: url('./fonts/helvetica-neue/HelveticaNeueRoman.otf') format('opentype');          font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Helvetica Neue"; src: url('./fonts/helvetica-neue/HelveticaNeueItalic.ttf') format('truetype');         font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Helvetica Neue"; src: url('./fonts/helvetica-neue/HelveticaNeueMedium.otf') format('opentype');         font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Helvetica Neue"; src: url('./fonts/helvetica-neue/HelveticaNeueMediumItalic.otf') format('opentype');   font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: "Helvetica Neue"; src: url('./fonts/helvetica-neue/HelveticaNeueBold.otf') format('opentype');           font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Helvetica Neue"; src: url('./fonts/helvetica-neue/HelveticaNeueBoldItalic.otf') format('opentype');     font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: "Helvetica Neue"; src: url('./fonts/helvetica-neue/HelveticaNeueHeavy.otf') format('opentype');          font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Helvetica Neue"; src: url('./fonts/helvetica-neue/HelveticaNeueBlack.otf') format('opentype');          font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Helvetica Neue"; src: url('./fonts/helvetica-neue/HelveticaNeueBlackItalic.otf') format('opentype');    font-weight: 900; font-style: italic; font-display: swap; }
+
+/* ─── HELVETICA ───────────────────────────────────────────── */
+@font-face { font-family: "Helvetica"; src: url('./fonts/helvetica/helvetica-light-587ebe5a59211.ttf') format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "Helvetica"; src: url('./fonts/helvetica/Helvetica.ttf') format('truetype');            font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Helvetica"; src: url('./fonts/helvetica/Helvetica-Oblique.ttf') format('truetype');    font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Helvetica"; src: url('./fonts/helvetica/Helvetica-Bold.ttf') format('truetype');       font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Helvetica"; src: url('./fonts/helvetica/Helvetica-BoldOblique.ttf') format('truetype'); font-weight: 700; font-style: italic; font-display: swap; }
+
+/* ─── ARIAL ───────────────────────────────────────────────── */
+@font-face { font-family: "Arial"; src: url('./fonts/arial/ARIAL.TTF') format('truetype');   font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Arial"; src: url('./fonts/arial/ARIALI.TTF') format('truetype');  font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Arial"; src: url('./fonts/arial/ARIALBD.TTF') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Arial"; src: url('./fonts/arial/ARIALBI.TTF') format('truetype'); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: "Arial"; src: url('./fonts/arial/ARIBLK.TTF') format('truetype');  font-weight: 900; font-style: normal; font-display: swap; }
+
+/* ─── TOKENS ─────────────────────────────────────────────── */
+/*:root {*/
+/*  --background: #060608;*/
+/*  --foreground: #f0ede6;*/
+/*  --amber:       #f5a623;*/
+/*  --amber-bright:#ffbe3d;*/
+/*  --amber-dim:   #f5a62340;*/
+/*  --orange:      #ff5c00;*/
+/*  --steel:       #1a1c24;*/
+/*  --muted:       #4a4a5a;*/
+/*  --stripe:      rgba(245, 166, 35, 0.055);*/
+
+/*--border: 30 20% 20%;*/
+/*--dark-card: 20 15% 12%;*/
+/*border-color: hsl(var(--border) / .3);*/
+/*background-color: hsl(var(--dark-card) / .6);*/
+/*--tw-backdrop-blur: blur(24px);*/
+/*font-size: 0.9rem;*/
+/*}*/
+
+/*
+    --dark-card: 20 15% 12%;
+    --border: 30 20% 20%;
+    border-radius: 9999px;
+    border-width: 1px;
+    border-color: hsl(var(--border) / .3);
+    background-color: hsl(20deg 15% 12% / 77%);
+    --tw-backdrop-blur: blur(24px);
+    -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+    backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+ */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --amber:       #f5a623;
+  --amber-bright:#ffbe3d;
+  --amber-dim:   rgba(245, 166, 35, 0.12);
+  --orange:      #ff6200;
+  --dark:        #060504;
+  --dark-2:      #0f0e0c;
+  --steel:       #1a1c24;
+  --muted:       #6a6a7a;
+  --white:       #f0ede6;
+  --stripe:      rgba(245, 166, 35, 0.03);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-behavior: smooth;
+  overflow-anchor: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.tertiary-font {
+  font-family: Syne,sans-serif
+}
+/* ─── RESET ───────────────────────────────────────────────── */
+/**, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }*/
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 }
 
 body {
-  background: var(--background);
+  font-family: "Aeonik", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #f7f4ee;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-} */
-
-
-@import "tailwindcss";
-
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&display=swap");
-
-/* ─── TOKENS ─────────────────────────────────────────────── */
-:root {
-  --background: #060608;
-  --foreground: #f0ede6;
-  --amber:       #f5a623;
-  --amber-bright:#ffbe3d;
-  --amber-dim:   #f5a62340;
-  --orange:      #ff5c00;
-  --steel:       #1a1c24;
-  --muted:       #4a4a5a;
-  --stripe:      rgba(245, 166, 35, 0.055);
-}
-
-/* ─── RESET ───────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: "Barlow Condensed", sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
   height: 100dvh;
 }
 
@@ -115,7 +174,7 @@ body {
 }
 
 .topbar-logo {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: "Aeonik", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.6rem;
   letter-spacing: 0.12em;
   color: var(--amber);
@@ -180,7 +239,7 @@ body {
 
 /* ─── TITLE ───────────────────────────────────────────────── */
 .hero-title {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: "Aeonik", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 0.88;
   display: flex;
   flex-direction: column;
@@ -274,7 +333,7 @@ body {
   gap: 4px;
 }
 .stat-value {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: "Aeonik", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   color: var(--amber);
   line-height: 1;

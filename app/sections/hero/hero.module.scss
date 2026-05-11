@@ -1,0 +1,449 @@
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  overflow-anchor: none;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("/hero-bg.jpg");
+  background-size: cover;
+  background-position: 55% center;
+  background-repeat: no-repeat;
+  animation: heroCardReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  clip-path: inset(0% round 18px);
+  will-change: clip-path;
+  transform: translateZ(0);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  animation: heroCardReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: clip-path;
+  transform: translateZ(0);
+  z-index: 1;
+  background:
+          /* Top dark band for navbar */
+          linear-gradient(to bottom, rgba(6,5,4,0.72) 0%, rgba(6,5,4,0.18) 18%, transparent 40%),
+            /* Heavy bottom dark for tagline readability */
+          linear-gradient(to top, rgba(6,5,4,0.98) 0%, rgba(6,5,4,0.75) 22%, rgba(6,5,4,0.20) 45%, transparent 62%),
+            /* Left edge shadow so banner text pops over bright machine parts */
+          linear-gradient(to right, rgba(6,5,4,0.35) 0%, transparent 30%),
+            /* Warm amber crown glow */
+          radial-gradient(ellipse 65% 30% at 50% 0%, rgba(190,125,8,0.18) 0%, transparent 72%),
+            /* Welding warm bloom bottom-left */
+          radial-gradient(ellipse 55% 50% at 25% 85%, rgba(225,85,0,0.18) 0%, transparent 65%);
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image:
+          linear-gradient(rgba(245,166,35,0.018) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(245,166,35,0.018) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px;
+  opacity: 0.40;
+}
+
+.spotlight {
+  position: absolute;
+  top: -220px; right: -100px;
+  width: 650px; height: 650px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,110,0,0.12) 0%, transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+  animation: spotlightDrift 15s ease-in-out infinite alternate;
+}
+
+@keyframes spotlightDrift {
+  0%   { transform: translate(0, 0) scale(1);      opacity: 0.75; }
+  33%  { transform: translate(-80px, 65px) scale(1.2);  opacity: 1; }
+  66%  { transform: translate(45px, -45px) scale(0.85); opacity: 0.6; }
+  100% { transform: translate(-65px, 38px) scale(1.3);  opacity: 1; }
+}
+
+.cursor-glow {
+  position: fixed;
+  top: 0; left: 0;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,140,0,0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 2;
+  transition: transform 0.1s ease;
+  will-change: transform;
+}
+
+.sparks {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.spark {
+  position: absolute;
+  bottom: -4px;
+  border-radius: 50%;
+  background: var(--amber-bright);
+  box-shadow: 0 0 4px var(--amber);
+  animation: sparkFloat linear infinite;
+}
+
+@keyframes sparkFloat {
+  0%   { transform: translateY(100vh) translateX(0)   scale(1);    opacity: 0; }
+  8%   { opacity: 1; }
+  50%  { transform: translateY(50vh)  translateX(14px) scale(1.2); }
+  92%  { opacity: 1; }
+  100% { transform: translateY(-5vh)  translateX(-8px) scale(0.6); opacity: 0; }
+}
+
+.scanline {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  opacity: 0.055;
+  z-index: 4;
+  pointer-events: none;
+  animation: scanDown 10s linear infinite;
+}
+
+.layout {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  /* top padding clears the fixed navbar */
+  padding: 72px 0 clamp(40px, 6dvh, 80px);
+}
+
+.banner {
+  //padding: clamp(8px, 1.5dvh, 24px) 0 0 clamp(20px, 4.5vw, 80px);
+  //font-family: "Bebas Neue", sans-serif;
+  /* Scale so "JIM TOUCH" (≈9 chars in Bebas Neue) spans ~90% of viewport */
+  font-size: clamp(3rem, 5vw, 22rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: slideInLeft 1s cubic-bezier(0.22,1,0.36,1) 0.3s both;
+}
+
+.jim {
+  color: var(--white);
+  /* subtly drop-shadow so it reads over the machine */
+  text-shadow: 0 4px 40px rgba(0,0,0,0.55);
+}
+
+.touch {
+  background: linear-gradient(90deg, var(--amber-bright) 0%, var(--amber) 50%, var(--orange) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 55px rgba(245,130,0,0.50));
+  animation: accentPulse 4s ease-in-out 1.5s infinite alternate;
+}
+
+@keyframes heroCardReveal {
+  0% {
+    clip-path: inset(32% 24% round 40px);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  to {
+    clip-path: inset(12px round 32px);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  @keyframes heroCardReveal {
+    0% {
+      clip-path: inset(32% 24% round 40px);
+      opacity: 0;
+    }
+    25% {
+      opacity: 1;
+    }
+    to {
+      clip-path: inset(0% round 0px);
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes accentPulse {
+  from { filter: drop-shadow(0 0 40px rgba(245,130,0,0.45)); }
+  to   { filter: drop-shadow(0 0 90px rgba(245,130,0,0.80)); }
+}
+
+.bottom {
+  padding-left: clamp(20px, 4.5vw, 80px);
+  max-width: 680px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.20em;
+  color: var(--amber);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  animation: fadeUp 0.8s ease 0.7s both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.tagline {
+  //font-family: "Bebas Neue", sans-serif;
+  font-weight: 300;
+  font-size: clamp(2rem, 4.2vw, 4.5rem);
+  color: var(--white);
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  animation: fadeUp 0.85s cubic-bezier(0.22,1,0.36,1) 0.9s both;
+}
+
+.desc {
+  max-width: 500px;
+  font-size: clamp(0.88rem, 1.4vw, 1.02rem);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  line-height: 1.80;
+  //color: rgba(240,237,230,0.44);
+  color: #bcbcbc;
+  margin-bottom: 36px;
+  animation: fadeUp 0.8s ease 1.05s both;
+
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 68px;
+  animation: fadeUp 0.8s ease 1.28s both;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 30px;
+  height: 52px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.25s ease;
+
+  &-primary {
+    background: var(--amber);
+    color: #060504;
+
+    &:hover {
+      background: var(--amber-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 34px rgba(245,166,35,0.40);
+
+      .btn-arrow { transform: translateX(5px); }
+    }
+  }
+
+  &-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 1.5px solid rgba(245,166,35,0.30);
+
+    &:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+      transform: translateY(-2px);
+    }
+  }
+
+  &-arrow {
+    display: inline-block;
+    transition: transform 0.25s ease;
+  }
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: clamp(28px, 6vw, 68px);
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  animation: fadeUp 0.8s ease both;
+  position: relative;
+
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: calc(-1 * clamp(14px, 3vw, 34px));
+    top: 50%; transform: translateY(-50%);
+    width: 1px; height: 38px;
+    background: rgba(245,166,35,0.18);
+  }
+}
+
+.value {
+  //font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  color: var(--amber);
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+.label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.scroll {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.58rem;
+  letter-spacing: 0.24em;
+  color: var(--muted);
+  text-transform: uppercase;
+  animation: fadeUp 0.8s ease 2.2s both;
+  white-space: nowrap;
+}
+
+.chevron {
+  width: 18px; height: 18px;
+  border-right: 1.5px solid var(--muted);
+  border-bottom: 1.5px solid var(--muted);
+  transform: rotate(45deg);
+  animation: chevronBounce 1.6s ease-in-out infinite;
+}
+
+
+@media (max-width: 768px) {
+  .desc {
+    color: white;
+  }
+
+  .overlay {
+    background:
+            /* Top dark band for navbar */
+            linear-gradient(to bottom, rgba(6,5,4,0.72) 0%, rgba(6,5,4,0.18) 18%, transparent 40%),
+              /* Heavy bottom dark for tagline readability */
+            linear-gradient(to top, rgba(6,5,4,0.98) 0%, rgba(6,5,4,0.75) 22%, #00000085 58%, transparent 62%),
+              /* Left edge shadow so banner text pops over bright machine parts */
+            linear-gradient(to right, rgba(6,5,4,0.35) 0%, transparent 30%),
+              /* Warm amber crown glow */
+            radial-gradient(ellipse 65% 30% at 50% 0%, rgba(190,125,8,0.18) 0%, transparent 72%),
+              /* Welding warm bloom bottom-left */
+            radial-gradient(ellipse 55% 50% at 25% 85%, rgba(225,85,0,0.18) 0%, transparent 65%);
+  }
+}
+
+
+
+/* ── Brands ticker ───────────────────────────────────────── */
+@keyframes brandsScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.brandsTicker {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  background: rgba(8, 7, 5, 0.72);
+  border-top: 1px solid rgba(245, 166, 35, 0.15);
+  padding: 10px 0;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.brandsTrack {
+  display: inline-flex;
+  animation: brandsScroll 18s linear infinite;
+  will-change: transform;
+}
+
+.brandsInner {
+  display: inline-flex;
+  align-items: center;
+}
+
+.brandItem {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245, 166, 35, 0.75);
+  padding: 0 20px;
+  gap: 20px;
+}
+
+.brandDot {
+  color: rgba(245, 166, 35, 0.3);
+  margin-right: -10px;
+}

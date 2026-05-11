@@ -1,0 +1,273 @@
+.projects {
+  background: #fff;
+  color: #111;
+  font-family: "Aeonik", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: clamp(72px, 8vw, 128px) clamp(24px, 5.5vw, 88px) 0;
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 64px);
+  align-items: end;
+  margin-bottom: clamp(56px, 7vw, 96px);
+  padding-bottom: clamp(32px, 4vw, 56px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.eyebrow {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: clamp(20px, 2.5vw, 32px);
+}
+
+.eyebrowLine {
+  display: block;
+  width: 72px;
+  height: 1px;
+  background: #bbb;
+  flex-shrink: 0;
+}
+
+.eyebrowText {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.heading {
+  font-size: clamp(2.4rem, 5.5vw, 5rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: #111;
+}
+
+.headerRight {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: flex-end;
+}
+
+.headerCopy {
+  font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+  color: rgba(17, 17, 17, 0.45);
+  line-height: 1.65;
+  max-width: 40ch;
+}
+
+.clientCount {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 300;
+  color: #111;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.clientCountLabel {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-top: 4px;
+}
+
+/* ── Client grid ─────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.cell {
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding: clamp(24px, 3vw, 40px) clamp(20px, 2.5vw, 36px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: background 0.18s;
+  cursor: default;
+}
+
+.cell:hover {
+  background: #f7f4ee;
+}
+
+.cellSector {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #bbb;
+}
+
+.cellName {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-weight: 400;
+  color: #111;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.cellDesc {
+  font-size: clamp(0.75rem, 0.9vw, 0.82rem);
+  color: rgba(17, 17, 17, 0.4);
+  line-height: 1.55;
+  margin-top: 4px;
+}
+
+/* ── Brands heading ─────────────────────────────────────── */
+.brandsHeading {
+  margin-top: clamp(56px, 7vw, 96px);
+  margin-bottom: clamp(32px, 4vw, 56px);
+  text-align: center;
+}
+
+.brandsTitle {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: clamp(12px, 1.5vw, 20px);
+}
+
+.brandsTitleDark {
+  color: #111;
+}
+
+.brandsTitleLight {
+  color: #ccc;
+}
+
+.brandsSub {
+  font-size: clamp(0.8rem, 1vw, 0.9rem);
+  color: #bbb;
+  letter-spacing: 0.02em;
+}
+
+/* ── Brands marquee ──────────────────────────────────────── */
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee {
+  overflow: hidden;
+  background: #fff;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  padding: clamp(24px, 3vw, 40px) 0;
+  margin-top: 0;
+
+  &:hover .marqueeTrack { animation-play-state: paused; }
+}
+
+.marqueeTrack {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 12px;
+  padding: 0 6px;
+  animation: marqueeScroll 28s linear infinite;
+  will-change: transform;
+}
+
+.marqueeInner {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.brandCard {
+  cursor: default;
+  background: #f6f4f1;
+  border-radius: 12px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: clamp(160px, 18vw, 220px);
+  height: clamp(100px, 12vw, 140px);
+  padding: clamp(20px, 2.5vw, 32px);
+  transition: background 0.2s;
+  overflow: hidden;
+
+  &:hover { background: #eceae6; }
+
+  &:hover .brandHoverName {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.brandLogo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.brandMark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: #d8d4ce;
+  border-radius: 8px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #555;
+  flex-shrink: 0;
+}
+
+.brandName {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #888;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.brandHoverName {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #999;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.2s, transform 0.2s;
+  pointer-events: none;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .header {
+    grid-template-columns: 1fr;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
